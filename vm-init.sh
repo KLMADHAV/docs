@@ -49,7 +49,7 @@ LENV() {
 	curl https://raw.githubusercontent.com/versionit/docs/master/idle.sh -o /boot/idle.sh &>/dev/null
 	chmod +x /boot/idle.sh
 	sed -i -e '/idle/ d' /var/spool/cron/root &>/dev/null
-	echo "*/10 * * * * /boot/idle.sh" >/var/spool/cron/root
+	echo "*/10 * * * * sh -x /boot/idle.sh &>/tmp/idle.out" >/var/spool/cron/root
 	chmod 600 /var/spool/cron/root
 	
 	echo -e "LANG=en_US.utf-8\nLC_ALL=en_US.utf-8" >/etc/environment
