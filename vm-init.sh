@@ -23,7 +23,7 @@ SELINUX() {
 	S=$(sestatus  |grep 'SELinux status'  |awk '{print $NF}')
 	if [ "$S" = "enabled" ]; then 
 		Print "NL" "Enabled.." "R"
-		Print "SL" "Disabling SELINUX.." B
+		Print "SL" "+>> Disabling SELINUX.." B
 		sed -i -e '/^SELINUX/ c SELINUX=disabled' /etc/selinux/config
 		Print "NL" "Success" G
 		rreq=yes
