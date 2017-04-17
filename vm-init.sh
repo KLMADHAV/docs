@@ -43,7 +43,7 @@ LENV() {
 
 	Print SL "=>> Setting Enviornment.. " B
 	sed -i -e '/TCPKeepAlive/ c TCPKeepAlive yes' -e '/ClientAliveInterval/ c ClientAliveInterval 10' /etc/ssh/sshd_config
-	curl https://raw.githubusercontent.com/versionit/docs/master/ps1.sh > /etc/profile.d/ps1.sh &>/dev/null
+	curl https://raw.githubusercontent.com/versionit/docs/master/ps1.sh > /etc/profile.d/ps1.sh 2>/dev/null
 	chmod +x /etc/profile.d/ps1.sh
 	
 	curl https://raw.githubusercontent.com/versionit/docs/master/idle.sh -o /boot/idle.sh &>/dev/null
