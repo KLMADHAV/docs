@@ -85,7 +85,6 @@ if [ $(rpm -qa |grep ^base |awk -F . '{print $(NF-1)}') = "el6" ]; then
 fi 
 
 
-Print "SL" "=>> Checking SELINUX.. " "B"
 SELINUX
 Print "SL" "=>> Disabling Firewall.. " "B"
 systemctl disable firewalld &>/dev/null
