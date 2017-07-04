@@ -30,6 +30,12 @@ if [ `id -u` -ne 0 ]; then
 	exit 1
 fi
 
+TIMEUNIT=$(uptime  |awk -F , '{print $1}' |awk '{print $NF}')
+if [ "$TIMEUNIT" = min ]; then 
+	TIME=$(uptime  |awk -F , '{print $1}' |awk '{print $(NF-1)}')
+	[ "$TIME" -le 30 ] && exit
+fi
+
 c=$(last |grep 'still logged in' -c)
 if [ $c -eq 0 ]; then
 	if [ ! -f /var/log/idle ]; then 
