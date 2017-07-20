@@ -33,7 +33,7 @@ fi
 TIMEUNIT=$(uptime  |awk -F , '{print $1}' |awk '{print $NF}')
 if [ "$TIMEUNIT" = min ]; then 
 	TIME=$(uptime  |awk -F , '{print $1}' |awk '{print $(NF-1)}')
-	[ "$TIME" -le 30 ] && exit
+	[ "$TIME" -le 59 ] && exit
 fi
 
 c=$(last |grep 'still logged in' -c)
@@ -48,7 +48,7 @@ if [ $c -eq 0 ]; then
 		ots=$(cat /var/log/idle|awk -F : '{print $2}')
 		idsec=$(($ts-$ots))
 		idmin=$(($idsec/60))
-		if [ $idmin -gt 30 ]; then
+		if [ $idmin -gt 59 ]; then
 			logger -t "IDLE SCRIPT" -i "Server is idle - Shutting Down"
 			SHUT
 		fi
@@ -61,7 +61,7 @@ elif [ $c -gt 0 ]; then
 		elif [ "$l" = "m" ] ; then  echo yes >> /tmp/time ; continue
 		else 
 			t=$(echo $time |awk -F : '{print $1}')
-			if [ $t -gt 30 ]; then 
+			if [ $t -gt 59 ]; then 
 				echo yes >> /tmp/time
 			else
 				echo no >> /tmp/time
